@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"financial_toolbox/internal/model"
 	"financial_toolbox/internal/service"
-	"math/rand/v2"
 	"time"
 )
 

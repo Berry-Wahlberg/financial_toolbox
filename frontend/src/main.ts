@@ -1,10 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { CreateWailsApp } from '../wailsjs/go/main/App'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import router from './router'
+import { createPinia } from 'pinia'
 
 const app = createApp(App)
-const wails = CreateWailsApp()
+const pinia = createPinia()
 
-app.config.globalProperties.$wails = wails
+app.use(ElementPlus)
+app.use(router)
+app.use(pinia)
 
 app.mount('#app')

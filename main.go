@@ -13,6 +13,7 @@ var assets embed.FS
 
 func main() {
 	// 创建应用实例
+	app := NewApp()
 	err := wails.Run(&options.App{
 		Title:  "Financial Toolbox",
 		Width:   1280,

@@ -2,6 +2,7 @@ package service
 
 import (
 	"financial_toolbox/internal/model"
+	"financial_toolbox/internal/python"
 	"math/rand/v2"
 	"time"
 )
@@ -37,13 +38,13 @@ func CalculateIndicator(req model.IndicatorRequest) (*model.IndicatorResult, err
 
 		switch req.Indicator {
 		case "ma":
-			item["value"] = kline.Close + (rand.Float64() - 0.5) * 5
+			item["value"] = kline.Close + (rand.Float64()-0.5)*5
 		case "rsi":
-			item["value"] = 30 + rand.Float64() * 40
+			item["value"] = 30 + rand.Float64()*40
 		case "macd":
-			item["macd"] = rand.Float64() * 2 - 1
-			item["signal"] = rand.Float64() * 2 - 1
-			item["histogram"] = rand.Float64() * 2 - 1
+			item["macd"] = rand.Float64()*2 - 1
+			item["signal"] = rand.Float64()*2 - 1
+			item["histogram"] = rand.Float64()*2 - 1
 		}
 
 		result = append(result, item)
@@ -65,4 +66,9 @@ func GetAvailableIndicators() []string {
 		"kdj",
 		"cci",
 	}
+}
+
+func ExecutePythonScript(scriptPath string, inputData string) (string, error) {
+	pm := python.NewPythonManager()
+	return pm.ExecuteScript(scriptPath, inputData)
 }
