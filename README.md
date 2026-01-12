@@ -1,141 +1,141 @@
-# Personal Financial Toolbox
+# Financial Toolbox
 
-## Purpose
+一个现代化的金融分析工具箱，使用最新的技术栈构建。
 
-The Personal Financial Toolbox is a comprehensive application designed to provide advanced financial analysis capabilities. It leverages the power of Go for backend API development and Python for complex data analysis, enabling users to perform technical analysis on stock data, including indicators like MACD, RSI, and backtesting strategies.
+## 技术栈
 
-## Architecture
+### 后端
+- **语言**: Go 1.21+
+- **框架**: Gin Web Framework
+- **特性**: RESTful API、CORS支持
 
-- **Backend**: Go 1.21+ (Controller and Service layers)
-- **Data Analysis**: Python 3.10+ (Worker scripts for complex calculations)
-- **Communication**: JSON data exchange between Go and Python processes
-- **API Framework**: Gin Web Framework
+### 前端
+- **框架**: Vue 3 + TypeScript
+- **构建工具**: Vite
+- **UI库**: Element Plus
+- **状态管理**: Pinia
+- **路由**: Vue Router
+- **图表**: ECharts + vue-echarts
 
-## Installation
+### 编辑器
+- **技术**: React + TypeScript
+- **功能**: 可视化策略编辑器
 
-### Prerequisites
+### 量化分析
+- **语言**: Python 3.10+
+- **库**: pandas, pandas_ta, numpy, scikit-learn
+- **功能**: 技术指标计算、回测分析
 
-- Go 1.21 or higher
-- Python 3.10 or higher
-- Git
+## 项目结构
 
-### Steps
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd financial_toolbox
-   ```
-
-2. **Install Go dependencies**
-   ```bash
-   go mod download
-   ```
-
-3. **Install Python dependencies**
-   ```bash
-   pip install -r scripts/requirements.txt
-   ```
-
-## Usage
-
-### Running the Application
-
-1. **Start the Go server**
-   ```bash
-   go run main.go
-   ```
-
-2. **Access the API**
-   The server will start on `http://localhost:8080`
-
-### API Endpoints
-
-#### GET /api/indicator
-
-Calculates technical indicators for a given stock symbol.
-
-**Parameters**:
-- `symbol`: Stock symbol (e.g., "AAPL", "GOOGL")
-- `indicator`: Indicator type (e.g., "macd")
-
-**Example Request**:
-```bash
-curl "http://localhost:8080/api/indicator?symbol=AAPL&indicator=macd"
+```
+financial_toolbox/
+├── backend/              # Go后端
+│   ├── internal/
+│   │   ├── api/         # API路由和处理器
+│   │   ├── service/     # 业务逻辑
+│   │   ├── model/       # 数据模型
+│   │   └── middleware/  # 中间件
+│   ├── main.go          # 入口文件
+│   └── go.mod           # Go模块配置
+├── frontend/            # Vue前端
+│   ├── src/
+│   │   ├── components/  # 组件
+│   │   ├── views/       # 页面
+│   │   ├── router/      # 路由配置
+│   │   ├── store/       # 状态管理
+│   │   ├── api/         # API调用
+│   │   └── types/       # TypeScript类型
+│   ├── package.json     # 依赖配置
+│   └── vite.config.ts   # Vite配置
+├── editor/              # React编辑器（待开发）
+├── python/              # Python量化模块
+│   ├── analyzer.py      # 分析器
+│   └── requirements.txt # Python依赖
+└── docs/               # 文档
 ```
 
-**Example Response**:
-```json
+## 快速开始
+
+### 后端
+
+```bash
+cd backend
+go mod download
+go run main.go
+```
+
+后端服务将在 `http://localhost:8080` 启动
+
+### 前端
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+前端服务将在 `http://localhost:3000` 启动
+
+### Python模块
+
+```bash
+cd python
+pip install -r requirements.txt
+python analyzer.py
+```
+
+## API接口
+
+### 健康检查
+```
+GET /api/health
+```
+
+### 获取股票数据
+```
+GET /api/stock/:symbol
+```
+
+### 计算指标
+```
+POST /api/indicator/calculate
+Content-Type: application/json
+
 {
-  "success": true,
-  "result": "[{\"date\":\"2023-01-01\",\"MACD_12_26_9\":null,\"MACDh_12_26_9\":null,\"MACDs_12_26_9\":null},{\"date\":\"2023-01-02\",\"MACD_12_26_9\":null,\"MACDh_12_26_9\":null,\"MACDs_12_26_9\":null},...]"
+  "symbol": "AAPL",
+  "indicator": "ma",
+  "params": {}
 }
 ```
 
-## Features
+### 获取可用指标
+```
+GET /api/indicators
+```
 
-- **MACD Indicator**: Moving Average Convergence Divergence calculation
-- **RESTful API**: Easy-to-use API for accessing financial indicators
-- **Modular Architecture**: Separation between backend and data analysis layers
-- **Error Handling**: Comprehensive error handling for robust operation
-- **Timeout Protection**: Prevents hanging from unresponsive Python scripts
+## 功能特性
 
-## Planned Features
+- [x] RESTful API
+- [x] 技术指标计算（MA、RSI、MACD等）
+- [x] 交互式图表（ECharts）
+- [x] 策略编辑器
+- ] 回测功能
+- ] 实时数据
+- ] 用户认证
 
-- **Additional Indicators**: RSI, Bollinger Bands, SMA, EMA, etc.
-- **Backtesting Framework**: Test trading strategies against historical data
-- **Real-time Data Integration**: Connect to financial data APIs for live data
-- **Visualization**: Generate charts and graphs for indicator results
-- **User Authentication**: Secure access to the API
+## 开发计划
 
-## Contribution
+- [ ] 完善回测功能
+- [ ] 添加更多技术指标
+- [ ] 实现实时数据推送
+- [ ] 添加用户认证系统
+- [ ] 优化性能和用户体验
 
-### Branching Strategy
+## 贡献指南
 
-This project uses a simplified Git Flow branching strategy combined with trunk-based development:
+欢迎提交Issue和Pull Request！
 
-1. **Main Branch**: Always represents production-ready code
-2. **Feature Branches**: Created for new development work
-   - Naming convention: `feature/feature-name`
-   - Short-lived branches (usually 1-3 days)
-3. **Code Review**: All feature branches require review before merging to main
-4. **Testing**: Ensure all changes are tested before integration
+## 许可证
 
-### Contribution Workflow
-
-1. **Create a feature branch**
-   ```bash
-   git checkout main
-   git pull origin main
-   git checkout -b feature/your-feature-name
-   ```
-
-2. **Make changes** and **commit** them
-   ```bash
-   git add .
-   git commit -m "Description of your changes"
-   ```
-
-3. **Push** the branch to the repository
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-4. **Create a Pull Request** for code review
-
-5. **Merge** the branch after approval and successful tests
-
-### Code Guidelines
-
-- **Go Code**: Follow `gofmt` standards, include Chinese comments
-- **Python Code**: Follow PEP 8 style guide
-- **Documentation**: Update documentation for new features
-- **Tests**: Add tests for new functionality
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For questions or suggestions, please open an issue on the repository.
+MIT License
