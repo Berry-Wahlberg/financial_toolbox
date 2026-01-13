@@ -1,8 +1,12 @@
 # Build artifacts
 build/bin/
+build/windows/appicon.png
 *.exe
 *.syso
 *.res
+
+# Frontend build artifacts
+frontend/dist/
 
 # Vendor directory
 vendor/
