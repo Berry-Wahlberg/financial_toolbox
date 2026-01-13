@@ -59,7 +59,7 @@ const toggleCollapse = () => {
 }
 
 const handleItemClick = (item: MenuItem) => {
-  console.log('Menu item clicked:', item.name, item.route)
+  router.push(item.route)
 }
 
 const toggleMenuItemVisibility = (id: string) => {
