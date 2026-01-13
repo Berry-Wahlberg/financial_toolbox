@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"financial_toolbox/internal/model"
 	"financial_toolbox/internal/service"
+	"fmt"
 	"time"
 )
 
@@ -63,9 +63,9 @@ func (a *App) GetAppVersion() string {
 
 func (a *App) GetSystemInfo() map[string]interface{} {
 	return map[string]interface{}{
-		"version":    "1.0.0",
-		"platform":   "Windows",
-		"buildTime":  time.Now().Format("2006-01-02 15:04:05"),
-		"author":     "Financial Toolbox",
+		"version":   "1.0.0",
+		"platform":  "Windows",
+		"buildTime": time.Now().Format("2006-01-02 15:04:05"),
+		"author":    "Financial Toolbox",
 	}
 }

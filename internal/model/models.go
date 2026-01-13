@@ -16,7 +16,7 @@ type IndicatorRequest struct {
 }
 
 type IndicatorResult struct {
-	Indicator string                 `json:"indicator"`
+	Indicator string                   `json:"indicator"`
 	Data      []map[string]interface{} `json:"data"`
 }
 

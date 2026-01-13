@@ -15,19 +15,19 @@ func main() {
 	// 创建应用实例
 	app := NewApp()
 	err := wails.Run(&options.App{
-		Title:  "Financial Toolbox",
-		Width:   1280,
-		Height:  800,
-		Assets:  assets,
-		OnStartup: app.startup,
+		Title:      "Financial Toolbox",
+		Width:      1280,
+		Height:     800,
+		Assets:     assets,
+		OnStartup:  app.startup,
 		OnShutdown: app.shutdown,
 		Bind: []interface{}{
 			app,
 		},
 		Windows: &windows.Options{
 			WebviewIsTransparent: false,
-			WindowIsTranslucent: false,
-			DisableWindowIcon: false,
+			WindowIsTranslucent:  false,
+			DisableWindowIcon:    false,
 		},
 	})
 
