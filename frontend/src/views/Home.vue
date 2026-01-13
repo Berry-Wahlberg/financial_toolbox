@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <el-container>
-      <el-header>
-        <h1>Financial Toolbox</h1>
-      </el-header>
       <el-main>
         <el-row :gutter="20">
           <el-col :span="8">
